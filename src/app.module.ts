@@ -4,10 +4,10 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { IAMModule } from './iam/iam.module';
 import { ProjectsModule } from './projects/projects.module';
 import { configValidationSchema } from './schemas/config.schema';
 import { UsersModule } from './users/users.module';
-import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -31,7 +31,7 @@ import { AuthModule } from './auth/auth.module';
     }),
     ProjectsModule,
     UsersModule,
-    AuthModule,
+    IAMModule,
   ],
   controllers: [AppController],
   providers: [AppService],
