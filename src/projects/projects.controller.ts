@@ -11,16 +11,21 @@ import {
 import { CreateProjectDto } from './dto/create-project.dto';
 import { UpdateProjectDto } from './dto/update-project.dto';
 import { ProjectsService } from './projects.service';
-import { Roles } from '../iam/authorization/decorators/roles.decorator';
+import { PERMISSION } from '../iam/authorization/constants/permission.constants';
+import { Permissions } from '../iam/authorization/decorators/permissions.decorator';
+// TODO: Uncomment if you want to test Roles
+// import { Roles } from '../iam/authorization/decorators/roles.decorator';
 import { ActiveUser } from '../iam/decorators/active-user.decorator';
 import type { ActiveUserData } from '../iam/interfaces/active-user-data.interface';
-import { ROLE } from '../users/interfaces/role.interface';
+// TODO: Uncomment if you want to test Roles
+// import { ROLE } from '../users/interfaces/role.interface';
 
 @Controller('projects')
 export class ProjectsController {
   constructor(private readonly projectsService: ProjectsService) {}
 
   @Post()
+  @Permissions(PERMISSION.CREATE_PROJECT)
   create(@Body() createProjectDto: CreateProjectDto) {
     return this.projectsService.create(createProjectDto);
   }
@@ -37,13 +42,17 @@ export class ProjectsController {
   }
 
   @Patch(':id')
-  @Roles(ROLE.ADMIN)
+  @Permissions(PERMISSION.UPDATE_PROJECT)
+  // TODO: Uncomment if you want to test Roles
+  // @Roles(ROLE.ADMIN)
   update(@Param('id') id: string, @Body() updateProjectDto: UpdateProjectDto) {
     return this.projectsService.update(+id, updateProjectDto);
   }
 
   @Delete(':id')
-  @Roles(ROLE.ADMIN)
+  @Permissions(PERMISSION.DELETE_PROJECT)
+  // TODO: Uncomment if you want to test Roles
+  // @Roles(ROLE.ADMIN)
   remove(@Param('id') id: string) {
     return this.projectsService.remove(+id);
   }

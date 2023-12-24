@@ -25,7 +25,7 @@ import {
   USER_DOES_NOT_EXISTS,
 } from '../constants/error-messages.constant';
 import { HashingService } from '../hashing/hashing.service';
-import { ActiveUserData } from '../interfaces/active-user-data.interface';
+import type { ActiveUserData } from '../interfaces/active-user-data.interface';
 import { RefreshTokenIdPayload } from '../interfaces/refresh-token-id-payload.interface';
 
 @Injectable()
@@ -121,6 +121,7 @@ export class AuthenticationService {
       this.signToken<Partial<ActiveUserData>>(user.id, accessTokenTtl, {
         email: user.email,
         role: user.role,
+        permissions: user.permissions,
       }),
       this.signToken<RefreshTokenIdPayload>(user.id, refreashTokenTtl, {
         refreshTokenId,

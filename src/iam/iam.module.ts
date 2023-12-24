@@ -9,6 +9,9 @@ import { AuthenticationService } from './authentication/authentication.service';
 import { AccessTokenGuard } from './authentication/guards/access-token.guard';
 import { AuthenticationGuard } from './authentication/guards/authentication.guard';
 import { RefreshTokenIdsStorage } from './authentication/refresh-token-ids.storage';
+import { PermissionsGuard } from './authorization/guards/permissions.guard';
+// TODO: Uncomment if you want to test Roles
+// import { RolesGuard } from './authorization/guards/roles.guard';
 import { jwtConfig } from './config/jwt.config';
 import { BcryptService } from './hashing/bcrypt.service';
 import { HashingService } from './hashing/hashing.service';
@@ -28,6 +31,15 @@ import { User } from '../users/entities/user.entity';
     {
       provide: APP_GUARD,
       useClass: AuthenticationGuard,
+    },
+    // TODO: Uncomment if you want to test Roles
+    // {
+    //   provide: APP_GUARD,
+    //   useClass: RolesGuard,
+    // },
+    {
+      provide: APP_GUARD,
+      useClass: PermissionsGuard,
     },
     AccessTokenGuard,
     AuthenticationService,

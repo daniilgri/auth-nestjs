@@ -3,7 +3,7 @@ import { Reflector } from '@nestjs/core';
 
 import { ROLE } from '../../../users/interfaces/role.interface';
 import { REQUEST_USER_KEY } from '../../constants/request.constant';
-import { ActiveUserData } from '../../interfaces/active-user-data.interface';
+import type { ActiveUserData } from '../../interfaces/active-user-data.interface';
 import { ROLES_KEY } from '../constants/roles.constants';
 
 @Injectable()

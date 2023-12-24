@@ -1,5 +1,9 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
+import {
+  PERMISSION,
+  PermissionType,
+} from './../../iam/authorization/constants/permission.constants';
 import { ROLE } from '../interfaces/role.interface';
 
 @Entity()
@@ -15,4 +19,7 @@ export class User {
 
   @Column({ enum: ROLE, default: ROLE.REGULAR })
   role: ROLE;
+
+  @Column({ enum: PERMISSION, default: [], type: 'json' })
+  permissions: PermissionType[];
 }
