@@ -14,8 +14,6 @@ export const jwtConfig = registerAs('jwt', () => {
     ),
   };
 
-  console.log(values);
-
   const { error } = jwtConfigValidationSchema.validate(values, {
     abortEarly: false,
   });
