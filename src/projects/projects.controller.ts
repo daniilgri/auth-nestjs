@@ -11,6 +11,8 @@ import {
 import { CreateProjectDto } from './dto/create-project.dto';
 import { UpdateProjectDto } from './dto/update-project.dto';
 import { ProjectsService } from './projects.service';
+import { ActiveUser } from '../iam/decorators/active-user.decorator';
+import type { ActiveUserData } from '../iam/interfaces/active-user-data.interface';
 
 @Controller('projects')
 export class ProjectsController {
@@ -22,7 +24,8 @@ export class ProjectsController {
   }
 
   @Get()
-  findAll() {
+  findAll(@ActiveUser() email: ActiveUserData) {
+    console.log(email);
     return this.projectsService.findAll();
   }
 

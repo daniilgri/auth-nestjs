@@ -19,6 +19,7 @@ import {
   USER_DOES_NOT_EXISTS,
 } from '../constants/error-messages.constant';
 import { HashingService } from '../hashing/hashing.service';
+import { ActiveUserData } from '../interfaces/active-user-data.interface';
 
 @Injectable()
 export class AuthenticationService {
@@ -69,7 +70,7 @@ export class AuthenticationService {
       {
         sub: user.id,
         email: user.email,
-      },
+      } as ActiveUserData,
       {
         audience,
         issuer,
