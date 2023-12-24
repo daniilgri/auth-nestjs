@@ -24,8 +24,8 @@ export class ProjectsController {
   }
 
   @Get()
-  findAll(@ActiveUser() email: ActiveUserData) {
-    console.log(email);
+  findAll(@ActiveUser() user: ActiveUserData) {
+    console.log('Active user', user);
     return this.projectsService.findAll();
   }
 

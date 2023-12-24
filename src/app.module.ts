@@ -6,7 +6,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { IAMModule } from './iam/iam.module';
 import { ProjectsModule } from './projects/projects.module';
-import { configValidationSchema } from './schemas/config.schema';
+import { appConfigValidationSchema } from './schemas/app-config.schema';
 import { UsersModule } from './users/users.module';
 
 @Module({
@@ -14,7 +14,7 @@ import { UsersModule } from './users/users.module';
     ConfigModule.forRoot({
       isGlobal: true,
       cache: true,
-      validationSchema: configValidationSchema,
+      validationSchema: appConfigValidationSchema,
     }),
     TypeOrmModule.forRootAsync({
       useFactory: (configService: ConfigService) => ({

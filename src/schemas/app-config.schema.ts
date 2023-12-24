@@ -1,6 +1,6 @@
 import * as Joi from 'joi';
 
-export const configValidationSchema = Joi.object({
+export const appConfigValidationSchema = Joi.object({
   DATABASE_USER: Joi.required(),
   DATABASE_PASSWORD: Joi.required(),
   DATABASE_NAME: Joi.required(),
