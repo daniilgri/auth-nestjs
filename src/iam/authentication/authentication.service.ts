@@ -13,7 +13,10 @@ import { Repository } from 'typeorm';
 import { RefreshTokenDto } from './dto/refresh-token.dto';
 import { SignInDto } from './dto/sign-in.dto';
 import { SignUpDto } from './dto/sign-up.dto';
-import { RefreshTokenIdsStorage } from './refresh-token-ids.storage';
+import {
+  InvalidatedRefreshTokenError,
+  RefreshTokenIdsStorage,
+} from './refresh-token-ids.storage';
 import { PG_UNIQUE_VIOLATION_ERROR_CODE } from '../../constants/db-error-codes.constant';
 import { User } from '../../users/entities/user.entity';
 import { jwtConfig } from '../config/jwt.config';
@@ -103,6 +106,10 @@ export class AuthenticationService {
 
       return this.generateTokens(user);
     } catch (error) {
+      if (error instanceof InvalidatedRefreshTokenError) {
+        throw new UnauthorizedException('Access denied');
+      }
+
       throw new UnauthorizedException(error.message);
     }
   }
