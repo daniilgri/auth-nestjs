@@ -120,6 +120,7 @@ export class AuthenticationService {
     const [accessToken, refreshToken] = await Promise.all([
       this.signToken<Partial<ActiveUserData>>(user.id, accessTokenTtl, {
         email: user.email,
+        role: user.role,
       }),
       this.signToken<RefreshTokenIdPayload>(user.id, refreashTokenTtl, {
         refreshTokenId,
