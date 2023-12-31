@@ -18,11 +18,14 @@ import { ProjectsService } from './projects.service';
 // import { Roles } from '../iam/authorization/decorators/roles.decorator';
 import { Policies } from '../iam/authorization/decorators/policies.decorator';
 import { FrameworkContributorPolicy } from '../iam/authorization/policies/framework-contributor.policy';
+import { AUTH_TYPE } from '../iam/constants/auth-type.constant';
 import { ActiveUser } from '../iam/decorators/active-user.decorator';
+import { Auth } from '../iam/decorators/auth.decorator';
 import type { ActiveUserData } from '../iam/interfaces/active-user-data.interface';
 // TODO: Uncomment if you want to test Roles
 // import { ROLE } from '../users/interfaces/role.interface';
 
+@Auth(AUTH_TYPE.API_KEY, AUTH_TYPE.BEARER)
 @Controller('projects')
 export class ProjectsController {
   constructor(private readonly projectsService: ProjectsService) {}

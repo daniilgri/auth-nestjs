@@ -1,5 +1,6 @@
 export enum AUTH_TYPE {
   BEARER = 'bearer',
+  API_KEY = 'apiKey',
   NONE = 'none',
 }
 
