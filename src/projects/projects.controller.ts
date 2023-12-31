@@ -36,6 +36,7 @@ export class ProjectsController {
   }
 
   @Get()
+  @Policies(new FrameworkContributorPolicy())
   findAll(@ActiveUser() user: ActiveUserData) {
     console.log('Active user', user);
     return this.projectsService.findAll();
